@@ -1,0 +1,39 @@
+// Add this in HandleUserQuery after sentiment detection:
+if (input.Contains("phishing"))
+{
+    string[] tips = {
+        "Be cautious of emails asking for personal info. Look closely at URLs and sender addresses.",
+        "Never click on suspicious links, especially from unknown senders.",
+        "Real companies won't ask you to verify sensitive info by email.",
+        "Hover over links before clicking. Check for misleading domains."
+    };
+    Random r = new Random();
+    TypeText($"Bot: {tips[r.Next(tips.Length)]}");
+    return;
+}
+
+
+// Update to PlayGreetingAudio method
+static void PlayGreetingAudio(string filePath)
+{
+    try
+    {
+        string fullPath = Path.Combine(Directory.GetCurrentDirectory(), filePath);
+
+        if (File.Exists(fullPath))
+        {
+            SoundPlayer player = new SoundPlayer(fullPath);
+            player.PlaySync();
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Error: The file '{filePath}' was not found.");
+        }
+    }
+    catch (Exception ex)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($"Error playing audio: {ex.Message}");
+    }
+}
