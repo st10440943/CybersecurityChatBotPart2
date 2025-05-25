@@ -1,0 +1,27 @@
+// Global variable added at the top of Program class
+static string userInterest = "";
+
+// Inside Main, add before the loop:
+if (input.Contains("interested in privacy"))
+{
+    userInterest = "privacy";
+    TypeText("Bot: Great! I'll remember that you're interested in privacy.", ConsoleColor.Yellow);
+    continue;
+}
+
+// Inside HandleUserQuery, before the phishing block:
+if (input.Contains("worried"))
+{
+    TypeText("Bot: It's okay to feel worried. Cybersecurity can seem scary, but I'm here to help.");
+    return;
+}
+else if (input.Contains("frustrated"))
+{
+    TypeText("Bot: I understand. Let’s take it one step at a time. Ask me anything.");
+    return;
+}
+else if (input.Contains("curious"))
+{
+    TypeText("Bot: Curiosity is a great mindset for cybersecurity. What are you curious about?");
+    return;
+}
